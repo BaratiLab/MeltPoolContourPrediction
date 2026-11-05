@@ -172,4 +172,4 @@ datasets/Optical_Images_Etched/Micron/Set03/Set3_1_Bead_4.csv
 !datasets/sample/100_0.9/Mono/4/*
 !datasets/sequence_exposure/*
 docstring*md
-experimental_depth_prediction_data.tar.gz*
+experimental_depth_prediction*data.tar.gz*

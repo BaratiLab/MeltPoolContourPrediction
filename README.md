@@ -1,4 +1,4 @@
-# ExperimentalDepthPrediction
+# MeltPoolContourPrediction
 
 This repository contains the code corresponding to the paper [Deep learning for melt pool depth contour prediction from surface thermal images via vision transformers](https://www.sciencedirect.com/science/article/pii/S2772369024000513) published in Additive Manufacturing Letters. This work uses a hybrid CNN-Transformer architecture to predict the shape of a single bead melt pool cross-section based on the corresponding thermal images. 
 
@@ -56,22 +56,24 @@ The *ex-situ* characterization data for this work consists of melt pool cross-se
 
 ### Getting the data
 
-The processed training data and the sample model are distributed separately from this repository as `experimental_depth_prediction_data.tar.gz`. After downloading, check the file against the provided checksum and unpack it in the repository root:
+
+Sample data and a trained model for the demo notebook are attached to the [latest release](https://github.com/BaratiLab/MeltPoolContourPrediction/releases/latest). To download both files and unzip it:
 
 ```
-sha256sum -c experimental_depth_prediction_data.tar.gz.sha256
-tar xzf experimental_depth_prediction_data.tar.gz
+wget https://github.com/BaratiLab/MeltPoolContourPrediction/releases/latest/download/experimental_depth_prediction_sample_data.tar.gz
+wget https://github.com/BaratiLab/MeltPoolContourPrediction/releases/latest/download/experimental_depth_prediction_sample_data.tar.gz.sha256
+sha256sum -c experimental_depth_prediction_sample_data.tar.gz.sha256
+tar xzf experimental_depth_prediction_sample_data.tar.gz
+
 ```
 
+This creates:
 
-This creates the following folders:
-
-* `data/sequence_exposure/train` and `data/sequence_exposure/test`: the thermal image sequences for each power-velocity combination, split into training and test sets. Each combination is stored as `<P>_<V>/<Temp|Mono>/<exposure>/<frame>.npy`.
-* `data/sequence_exposure/sample`: five combinations from the test set, used by the demo notebook.
-* `data/input_label_map`: the melt pool contour labels as binary masks (`enlarged_binary_contour_area.json`) and SDFs (`64_enlarged_sdf_contour_area.json`).
+* `data/sequence_exposure/sample`: thermal image sequences for five power-velocity combinations from the test set.
+* `data/input_label_map`: the melt pool contour labels for these combinations.
 * `checkpoints/sample_temporal_transformer.pth`: the sample trained model.
 
-The FLOW-3D and Eagar-Tsai simulation data used by the `flow3d/`, `eagar_tsai/` and `transfer/` configurations are not currently included.
+The sample data is sufficient to run the demo notebook. Training a new model requires the full training data, which is available on request.
 
 
 ### Exploring the implemented model
@@ -117,7 +119,7 @@ Add `-t` to compute train and test metrics, `-pv` to compute metrics for each pr
 
 ## General Repository Structure
 ```
-ExperimentalDepthPrediction/
+MeltPoolContourPrediction/
 ├── experimental_depth_prediction/   # Python package
 │   ├── main.py                      # training entry point
 │   ├── demo.ipynb                   # demo notebook
@@ -130,12 +132,9 @@ ExperimentalDepthPrediction/
 ├── data/                            # data (downloaded separately, see Getting the data)
 │   ├── input_label_map/             # melt pool contour labels
 │   └── sequence_exposure/           # thermal image sequences
-│       ├── train/
-│       ├── test/
 │       └── sample/                  # subset used by the demo notebook
 ├── checkpoints/                     # sample trained model (downloaded with the data)
 ├── figures/                         # figures used in this README
-├── archive/                         # scripts and environment files from earlier stages of this project
 ├── requirements.txt
 └── requirements.lock.txt
 
