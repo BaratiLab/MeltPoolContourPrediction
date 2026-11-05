@@ -1,0 +1,1 @@
+These included scripts provide information on how the raw contour data and thermal image file formats were converted to the `.npy` and `.json` files incldued in this repository. The raw data is not included with this repository due to file size limitations.

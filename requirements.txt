@@ -1,0 +1,35 @@
+# Direct dependencies for experimental_depth_prediction.
+# For the exact versions used for results, install from requirements.lock.txt instead.
+#
+#   conda create -n experimental_depth_prediction python=3.11 -y
+#   conda activate experimental_depth_prediction
+#   pip install -r requirements.txt
+
+# Install PyTorch first for your system (https://pytorch.org); these lines only fill it in if missing.
+# requirements.lock.txt pins the CUDA 12.8 builds used for the results.
+torch
+torchvision
+
+# Numerics / ML
+numpy
+scipy
+scikit-learn
+scikit-image        # imported as skimage
+einops
+transformers 
+
+# Data, config, logging
+pandas
+pyyaml
+tqdm
+wandb
+
+# Plotting
+# <3.10: analysis/scripts/input_label_map/generate_area.py uses canvas.tostring_rgb(),
+# removed in matplotlib 3.10. Drop this cap once that line uses buffer_rgba().
+matplotlib>=3.9,<3.10
+seaborn
+ipykernel
+
+# This repo, so the experimental_depth_prediction.* imports resolve
+-e .

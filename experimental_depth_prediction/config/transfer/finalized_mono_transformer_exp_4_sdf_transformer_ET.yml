@@ -1,0 +1,34 @@
+dim: 256
+epochs: 100
+ff_dim: 1024
+dropout: 0.1
+padding: 32
+backbone: "ResNet"
+exposure: "4"
+area_loss: false
+dice_loss: false
+num_heads: 4
+batch_size: 8
+embed_only: false
+image_type: "Mono"
+model_type: "temp_transformer"
+pretrained: false
+seq_length: 30
+augmentation: true
+weight_decay: 0.001
+learning_rate: 0.0001
+sequence_type: "rolling"
+use_scheduler: true
+pretrain_flow3d: false
+sequence_folder: "sequence_exposure"
+augment_transforms: false
+randomize_contours: false
+transformer_layers: 4
+moving_average_window_size: 5
+moving_average_window_stride: 1
+label_file: 64_enlarged_sdf_contour_area
+data_parallel: true
+sdf: true
+run_path: 'run_path_to_ET_trained_model' # specify this path
+model_artifact_path: 'path_to_saved_ET_checkpoint' # specify this path as well
+reload_model: true
